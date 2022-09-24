@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    android:background="@color/gray"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".screens.start.StartFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/almost_white">
+
+            <ImageView
+                android:id="@+id/flag_rus_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/rus_flag"
+                app:layout_constraintBottom_toTopOf="@+id/tv_rub_to_usd"
+                app:layout_constraintEnd_toEndOf="@+id/tv_rub_to_usd"
+                app:layout_constraintStart_toStartOf="@+id/tv_rub_to_usd" />
+
+            <TextView
+                android:id="@+id/tv_rub_to_usd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="@string/rub"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/usd_flag_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/usa_flag"
+                app:layout_constraintBottom_toTopOf="@+id/tv_usd_to_rub"
+                app:layout_constraintEnd_toEndOf="@+id/tv_usd_to_rub"
+                app:layout_constraintStart_toStartOf="@+id/tv_usd_to_rub" />
+
+            <TextView
+                android:id="@+id/tv_usd_to_rub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/usd"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_rub_usd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/orange"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_rub_to_usd"
+                app:layout_constraintStart_toStartOf="@+id/tv_rub_to_usd"
+                app:layout_constraintTop_toBottomOf="@+id/tv_rub_to_usd" />
+
+            <ImageView
+                android:id="@+id/equals_usd_rub_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/_forward_24"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_usd_to_rub"
+                app:layout_constraintEnd_toStartOf="@+id/tv_rub_to_usd"
+                app:layout_constraintStart_toEndOf="@+id/tv_usd_to_rub"
+                app:layout_constraintTop_toBottomOf="@+id/flag_rus_img" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/almost_white">
+
+            <ImageView
+                android:id="@+id/flag_rus_to_eur_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/rus_flag"
+                app:layout_constraintBottom_toTopOf="@+id/tv_rub_to_eur"
+                app:layout_constraintEnd_toEndOf="@+id/tv_rub_to_eur"
+                app:layout_constraintStart_toStartOf="@+id/tv_rub_to_eur" />
+
+            <TextView
+                android:id="@+id/tv_rub_to_eur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="@string/rub"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/euro_flag_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/flag_eur"
+                app:layout_constraintBottom_toTopOf="@+id/tv_eur_to_rub"
+                app:layout_constraintEnd_toEndOf="@+id/tv_eur_to_rub"
+                app:layout_constraintStart_toStartOf="@+id/tv_eur_to_rub" />
+
+            <TextView
+                android:id="@+id/tv_eur_to_rub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/eur"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_rub_eur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/orange"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_rub_to_eur"
+                app:layout_constraintStart_toStartOf="@+id/tv_rub_to_eur"
+                app:layout_constraintTop_toBottomOf="@+id/tv_rub_to_eur" />
+
+            <ImageView
+                android:id="@+id/equals_eur_rub_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/_forward_24"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_eur_to_rub"
+                app:layout_constraintEnd_toStartOf="@+id/tv_rub_to_eur"
+                app:layout_constraintStart_toEndOf="@+id/tv_eur_to_rub"
+                app:layout_constraintTop_toBottomOf="@+id/flag_rus_to_eur_img" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.appcompat.widget.LinearLayoutCompat>
