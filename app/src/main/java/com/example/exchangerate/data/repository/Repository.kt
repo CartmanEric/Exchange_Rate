@@ -5,7 +5,7 @@ import com.example.exchangerate.model.ExchangeRate
 import retrofit2.Response
 
 class Repository {
-     suspend fun getExchangeRate(): Response<ExchangeRate>{
+     suspend fun getExchangeRate(): Response<ExchangeRate> {
         return RetrofitInstance.api.getApi()
     }
 }

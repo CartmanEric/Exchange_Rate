@@ -13,7 +13,7 @@ import com.example.exchangerate.databinding.FragmentStartBinding
 
 
 class StartFragment : Fragment() {
-    lateinit var binding: FragmentStartBinding
+    private lateinit var binding: FragmentStartBinding
     private val viewModel: StartViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,6 +21,11 @@ class StartFragment : Fragment() {
     ): View {
         binding = FragmentStartBinding.inflate(layoutInflater, container, false)
         viewModel.getCurrentRate()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.exchangeRateDataRub.observe(viewLifecycleOwner) {
             binding.tvRubUsd.text = it
         }
@@ -28,16 +33,22 @@ class StartFragment : Fragment() {
             binding.tvRubEur.text = it
         }
         viewModel.errorCondition.observe(viewLifecycleOwner) {
-            if (it == false) {
-                Toast.makeText(context, R.string.exception, Toast.LENGTH_LONG).show()
-            }
+            showErrorCondition()
         }
-        return binding.root
+        binding.updateBut.setOnClickListener {
+            viewModel.getCurrentRate()
+            binding.updateBut.visibility = View.INVISIBLE
+        }
     }
 
     companion object {
         @JvmStatic
         fun newInstance() = StartFragment()
+    }
+
+    private fun showErrorCondition() {
+        Toast.makeText(context, R.string.exception, Toast.LENGTH_LONG).show()
+        binding.updateBut.visibility = View.VISIBLE
     }
 
 }
