@@ -4,6 +4,7 @@
     <string name="usd">USD</string>
     <string name="eur">EUR</string>
     <string name="splash_logo">Всегда актуальные данные!</string>
-    <string name="splash_url">Источник данных: https://cur.su</string>
+    <string name="splash_url">Источник данных: www.exchangerate-api.com</string>
     <string name="exception">Проверьте соединение с интернетом</string>
+    <string name="update">Обновить</string>
 </resources>
