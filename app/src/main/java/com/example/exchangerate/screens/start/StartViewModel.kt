@@ -23,6 +23,10 @@ class StartViewModel : ViewModel() {
     val errorCondition: LiveData<Unit>
         get() = _errorCondition
 
+    init {
+        getCurrentRate()
+    }
+
     fun getCurrentRate() {
         viewModelScope.launch {
             try {
@@ -36,12 +40,18 @@ class StartViewModel : ViewModel() {
         }
     }
 
-    private fun reduceNumbers(currency: Double?): String {
-        return String.format("%.2f", currency)
+    private fun reduceNumbers(oldNumbers: Double?): String {
+        val newNumbers = oldNumbers ?: throw RuntimeException("There is null")
+        return String.format("%.2f", newNumbers)
     }
 
     private fun countEur(currencyRub: Double?, currencyEur: Double?): String {
-        val sum = currencyRub!! / currencyEur!!
-        return String.format("%.2f", sum)
+        val totalSum =
+            if (currencyRub != null && currencyEur != null) {
+                currencyRub / currencyEur
+            } else {
+                throw RuntimeException("$currencyRub and $currencyEur are empty")
+            }
+        return String.format("%.2f", totalSum)
     }
 }
