@@ -22,7 +22,7 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentStartBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentStartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
