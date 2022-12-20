@@ -4,12 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.exchangerate.data.repository.Repository
+import com.example.exchangerate.data.repository.RepositoryImpl
+import com.example.exchangerate.domain.GetExchangeRateUseCase
 import kotlinx.coroutines.launch
 
 
 class StartViewModel : ViewModel() {
-    private val repo = Repository()
+
+    private val repository = RepositoryImpl()
+    private val getExchangeRateUseCase = GetExchangeRateUseCase(repository)
+
 
     private val _exchangeRateDataEur = MutableLiveData<String>()
     val exchangeRateDataEur: LiveData<String>
@@ -30,28 +34,24 @@ class StartViewModel : ViewModel() {
     fun getCurrentRate() {
         viewModelScope.launch {
             try {
-                val repoResultRub = repo.getExchangeRate().body()?.rates?.RUB
-                val repoResultEur = repo.getExchangeRate().body()?.rates?.EUR
-                _exchangeRateDataRub.value = reduceNumbers(repoResultRub)
-                _exchangeRateDataEur.value = countEur(repoResultRub, repoResultEur)
+
+                val repoResultRub = getExchangeRateUseCase.getExchangeRate().rates.RUB
+                val repoResultEur = getExchangeRateUseCase.getExchangeRate().rates.EUR
+               _exchangeRateDataRub.value = reduceNumbers(repoResultRub)
+               _exchangeRateDataEur.value = countEur(repoResultRub, repoResultEur)
             } catch (e: Exception) {
                 _errorCondition.value = Unit
             }
         }
+
     }
 
-    private fun reduceNumbers(oldNumbers: Double?): String {
-        val newNumbers = oldNumbers ?: throw RuntimeException("There is null")
-        return String.format("%.2f", newNumbers)
+    private fun reduceNumbers(number: Double): String {
+        return String.format("%.2f", number)
     }
 
-    private fun countEur(currencyRub: Double?, currencyEur: Double?): String {
-        val totalSum =
-            if (currencyRub != null && currencyEur != null) {
-                currencyRub / currencyEur
-            } else {
-                throw RuntimeException("$currencyRub and $currencyEur are empty")
-            }
+    private fun countEur(currencyRub: Double, currencyEur: Double): String {
+        val totalSum = currencyRub / currencyEur
         return String.format("%.2f", totalSum)
     }
 }
