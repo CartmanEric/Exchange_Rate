@@ -21,9 +21,7 @@ class SplashFragment : Fragment() {
     ): View? {
         CoroutineScope(Dispatchers.IO).launch {
             delay(2000)
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.frag_lay_out, StartFragment.newInstance())
-                .commit()
+            openStartFragment()
         }
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
@@ -31,6 +29,12 @@ class SplashFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = SplashFragment()
-            }
+    }
+
+    private fun openStartFragment() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frag_lay_out, StartFragment.newInstance())
+            .commit()
+    }
 
 }
