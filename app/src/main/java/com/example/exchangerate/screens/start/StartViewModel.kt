@@ -37,8 +37,8 @@ class StartViewModel : ViewModel() {
 
                 val repoResultRub = getExchangeRateUseCase.getExchangeRate().rates.RUB
                 val repoResultEur = getExchangeRateUseCase.getExchangeRate().rates.EUR
-               _exchangeRateDataRub.value = reduceNumbers(repoResultRub)
-               _exchangeRateDataEur.value = countEur(repoResultRub, repoResultEur)
+                _exchangeRateDataRub.value = repoResultRub
+                _exchangeRateDataEur.value = repoResultEur
             } catch (e: Exception) {
                 _errorCondition.value = Unit
             }
@@ -46,12 +46,4 @@ class StartViewModel : ViewModel() {
 
     }
 
-    private fun reduceNumbers(number: Double): String {
-        return String.format("%.2f", number)
-    }
-
-    private fun countEur(currencyRub: Double, currencyEur: Double): String {
-        val totalSum = currencyRub / currencyEur
-        return String.format("%.2f", totalSum)
-    }
 }

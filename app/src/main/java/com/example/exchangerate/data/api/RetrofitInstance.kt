@@ -1,11 +1,11 @@
 package com.example.exchangerate.data.api
 
-import com.example.exchangerate.model.ExchangeRate
+import com.example.exchangerate.data.model.ExchangeRateDb
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    suspend fun getCompletedRetrofit():ExchangeRate{
+    suspend fun getCompletedRetrofit(): ExchangeRateDb {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://open.er-api.com/v6/latest/")
             .addConverterFactory(GsonConverterFactory.create())
