@@ -11,19 +11,25 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.exchangerate.R
 
 import com.example.exchangerate.databinding.FragmentStartBinding
-import com.example.exchangerate.di.Component
-import com.example.exchangerate.di.DaggerComponent
+import com.example.exchangerate.presentation.ExchangeRateApp
+import com.example.exchangerate.presentation.ViewModelFactory
+import javax.inject.Inject
 
 
 class StartFragment : Fragment() {
-private val component by lazy {
-    DaggerComponent.create()
-}
+    private val component by lazy {
+        (requireActivity().application as ExchangeRateApp).component
+    }
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[StartViewModel::class.java]
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private var _binding: FragmentStartBinding? = null
     private val binding: FragmentStartBinding
         get() = _binding ?: throw RuntimeException("FragmentStartBinding is null")
-    private lateinit var viewModel: StartViewModel
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -35,12 +41,13 @@ private val component by lazy {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
+        initViewModel()
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
         binding.updateBut.setOnClickListener {
             viewModel.getCurrentRate()
             binding.updateBut.visibility = View.INVISIBLE
@@ -58,8 +65,6 @@ private val component by lazy {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this)[StartViewModel::class.java]
-
         viewModel.exchangeRateDataRub.observe(viewLifecycleOwner) {
             binding.tvRubUsd.text = it
         }

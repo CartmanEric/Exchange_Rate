@@ -8,9 +8,11 @@ import dagger.Provides
 @Module
 class DataModule {
 
-@Provides
-fun provideApi():ApiService{
-    return RetrofitInstance.api
-}
+
+    @Provides
+    @ApplicationScope
+    fun provideApi(): ApiService {
+        return RetrofitInstance.api
+    }
 
 }

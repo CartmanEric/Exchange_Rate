@@ -9,5 +9,5 @@ import dagger.Module
 interface DomainModule {
 
     @Binds
-    fun bindExchangeRateRepository(impl: RepositoryImpl):ExchangeRateRepository
+    fun bindExchangeRateRepository(impl: RepositoryImpl): ExchangeRateRepository
 }
