@@ -1,4 +1,4 @@
-package com.example.exchangerate.screens.splash
+package com.example.exchangerate.presentation.screens.splash
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.exchangerate.R
-import com.example.exchangerate.screens.start.StartFragment
+import com.example.exchangerate.presentation.screens.start.StartFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

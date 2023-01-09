@@ -1,4 +1,4 @@
-package com.example.exchangerate.screens.start
+package com.example.exchangerate.presentation.screens.start
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,13 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.exchangerate.data.repository.RepositoryImpl
 import com.example.exchangerate.domain.GetExchangeRateUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class StartViewModel : ViewModel() {
+class StartViewModel  : ViewModel() {
 
-    private val repository = RepositoryImpl()
-    private val getExchangeRateUseCase = GetExchangeRateUseCase(repository)
 
+
+    @Inject
+   lateinit var getExchangeRateUseCase: GetExchangeRateUseCase
 
     private val _exchangeRateDataEur = MutableLiveData<String>()
     val exchangeRateDataEur: LiveData<String>

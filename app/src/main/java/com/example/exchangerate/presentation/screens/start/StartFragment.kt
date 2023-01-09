@@ -1,5 +1,6 @@
-package com.example.exchangerate.screens.start
+package com.example.exchangerate.presentation.screens.start
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,13 +11,24 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.exchangerate.R
 
 import com.example.exchangerate.databinding.FragmentStartBinding
+import com.example.exchangerate.di.Component
+import com.example.exchangerate.di.DaggerComponent
 
 
 class StartFragment : Fragment() {
+private val component by lazy {
+    DaggerComponent.create()
+}
+
     private var _binding: FragmentStartBinding? = null
     private val binding: FragmentStartBinding
         get() = _binding ?: throw RuntimeException("FragmentStartBinding is null")
     private lateinit var viewModel: StartViewModel
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
