@@ -9,7 +9,7 @@
     android:background="@color/gray"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".screens.start.StartFragment">
+    tools:context=".presentation.screens.start.StartFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

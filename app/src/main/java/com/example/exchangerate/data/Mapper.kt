@@ -3,8 +3,9 @@ package com.example.exchangerate.data
 import com.example.exchangerate.data.model.ExchangeRateDb
 import com.example.exchangerate.domain.model.ExchangeRate
 import com.example.exchangerate.domain.model.Rates
+import javax.inject.Inject
 
-class Mapper {
+class Mapper @Inject constructor() {
 
 
     fun exchangeRateDbToExchangeRate(exchangeRate: ExchangeRateDb): ExchangeRate {
