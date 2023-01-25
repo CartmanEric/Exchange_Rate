@@ -2,14 +2,13 @@ package com.example.exchangerate.presentation.screens.start
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.exchangerate.R
-
 import com.example.exchangerate.databinding.FragmentStartBinding
 import com.example.exchangerate.presentation.ExchangeRateApp
 import com.example.exchangerate.presentation.ViewModelFactory
