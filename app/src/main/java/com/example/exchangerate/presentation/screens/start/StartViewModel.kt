@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.exchangerate.domain.GetExchangeRateUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,15 +32,14 @@ class StartViewModel @Inject constructor(
     }
 
     fun getCurrentRate() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-
-                val repoResultRub = getExchangeRateUseCase.getExchangeRate().rates.RUB
-                val repoResultEur = getExchangeRateUseCase.getExchangeRate().rates.EUR
-                _exchangeRateDataRub.value = repoResultRub
-                _exchangeRateDataEur.value = repoResultEur
+                val repoResultRub = getExchangeRateUseCase.getExchangeRate().RUB
+                val repoResultEur = getExchangeRateUseCase.getExchangeRate().EUR
+                _exchangeRateDataRub.postValue(repoResultRub)
+                _exchangeRateDataEur.postValue(repoResultEur)
             } catch (e: Exception) {
-                _errorCondition.value = Unit
+                _errorCondition.postValue(Unit)
             }
         }
 
