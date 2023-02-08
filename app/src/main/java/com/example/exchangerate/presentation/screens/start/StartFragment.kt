@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.exchangerate.R
 import com.example.exchangerate.databinding.FragmentStartBinding
+import com.example.exchangerate.domain.model.CheckCondition
+import com.example.exchangerate.domain.model.Rates
 import com.example.exchangerate.presentation.ExchangeRateApp
 import com.example.exchangerate.presentation.ViewModelFactory
 import javax.inject.Inject
@@ -48,8 +50,7 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.updateBut.setOnClickListener {
-            viewModel.getCurrentRate()
-            binding.updateBut.visibility = View.INVISIBLE
+            retryToGetData()
         }
     }
 
@@ -64,15 +65,20 @@ class StartFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.exchangeRateDataRub.observe(viewLifecycleOwner) {
-            binding.tvRubUsd.text = it
+        viewModel.exchangeRater.observe(viewLifecycleOwner) {
+            when (it) {
+                is Rates -> {
+                    binding.tvRubUsd.text = it.RUB
+                    binding.tvRubEur.text = it.EUR
+                }
+                is CheckCondition -> showErrorCondition()
+            }
         }
-        viewModel.exchangeRateDataEur.observe(viewLifecycleOwner) {
-            binding.tvRubEur.text = it
-        }
-        viewModel.errorCondition.observe(viewLifecycleOwner) {
-            showErrorCondition()
-        }
+    }
+
+    private fun retryToGetData() {
+        viewModel.getCurrentRate()
+        binding.updateBut.visibility = View.INVISIBLE
     }
 
     private fun showErrorCondition() {
