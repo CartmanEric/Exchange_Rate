@@ -1,6 +1,7 @@
 package com.example.exchangerate.di
 
-import com.example.exchangerate.presentation.screens.start.StartFragment
+import com.example.exchangerate.presentation.screens.SplashFragment
+import com.example.exchangerate.presentation.screens.StartFragment
 import dagger.Component
 
 
@@ -9,5 +10,6 @@ import dagger.Component
 interface Component {
 
     fun inject(startFragment: StartFragment)
+    fun inject(splashFragment: SplashFragment)
 
 }
