@@ -7,6 +7,8 @@ import com.example.exchangerate.domain.GetExchangeRateUseCase
 import com.example.exchangerate.domain.model.CheckCondition
 import com.example.exchangerate.domain.model.ExchangeRateSealed
 import com.example.exchangerate.domain.model.Rates
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -22,9 +24,13 @@ class MainViewModel @Inject constructor(
 
     suspend fun getCurrentRate() {
         try {
-            val repoResultRub = getExchangeRateUseCase.getExchangeRate().RUB
-            val repoResultEur = getExchangeRateUseCase.getExchangeRate().EUR
-            _exchangeRate.value = Rates(EUR = repoResultEur, RUB = repoResultRub)
+            withContext(Dispatchers.IO) {
+                val repoResultRub = getExchangeRateUseCase.getExchangeRate().RUB
+                val repoResultEur = getExchangeRateUseCase.getExchangeRate().EUR
+                withContext(Dispatchers.Main) {
+                    _exchangeRate.value = Rates(EUR = repoResultEur, RUB = repoResultRub)
+                }
+            }
         } catch (e: Exception) {
             _exchangeRate.value = CheckCondition
         }
