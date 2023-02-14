@@ -7,8 +7,7 @@ import com.example.exchangerate.domain.GetExchangeRateUseCase
 import com.example.exchangerate.domain.model.CheckCondition
 import com.example.exchangerate.domain.model.ExchangeRateSealed
 import com.example.exchangerate.domain.model.Rates
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 
@@ -21,19 +20,27 @@ class MainViewModel @Inject constructor(
     val exchangeRater: LiveData<ExchangeRateSealed>
         get() = _exchangeRate
 
+    private val _checkFinishCoroutine = MutableLiveData<Unit>()
+    val checkFinishCoroutine: LiveData<Unit>
+        get() = _checkFinishCoroutine
 
+
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        _exchangeRate.value = CheckCondition
+    }
+    private val job = SupervisorJob()
+    private val customCoroutine = CoroutineScope(Dispatchers.Main + job + exceptionHandler)
     suspend fun getCurrentRate() {
-        try {
-            withContext(Dispatchers.IO) {
-                val repoResultRub = getExchangeRateUseCase.getExchangeRate().RUB
-                val repoResultEur = getExchangeRateUseCase.getExchangeRate().EUR
-                withContext(Dispatchers.Main) {
-                    _exchangeRate.value = Rates(EUR = repoResultEur, RUB = repoResultRub)
-                }
-            }
-        } catch (e: Exception) {
-            _exchangeRate.value = CheckCondition
+        val startCoroutine = customCoroutine.launch {
+            val repoResultRub = getExchangeRateUseCase.getExchangeRate().RUB
+            val repoResultEur = getExchangeRateUseCase.getExchangeRate().EUR
+            _exchangeRate.value = Rates(EUR = repoResultEur, RUB = repoResultRub)
+        }
+        customCoroutine.launch {
+            startCoroutine.join()
+            _checkFinishCoroutine.value = Unit
         }
     }
 
 }
+

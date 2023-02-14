@@ -45,14 +45,13 @@ class StartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
-
-        initViewModel()
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViewModel()
         binding.updateBut.setOnClickListener {
             retryToGetData()
         }
@@ -90,7 +89,6 @@ class StartFragment : Fragment() {
 
     private fun showErrorCondition() {
         Toast.makeText(context, R.string.exception, Toast.LENGTH_LONG).show()
-        binding.updateBut.visibility = View.VISIBLE
     }
 
 }

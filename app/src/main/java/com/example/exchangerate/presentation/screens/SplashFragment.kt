@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -44,11 +43,10 @@ class SplashFragment : Fragment() {
     }
 
     private fun checkCoroutineCondition() {
-        val initMainCoroutine = lifecycleScope.launch {
+        lifecycleScope.launch {
             viewModel.getCurrentRate()
         }
-        lifecycleScope.launch {
-            initMainCoroutine.join()
+        viewModel.checkFinishCoroutine.observe(viewLifecycleOwner) {
             openStartFragment()
         }
     }
