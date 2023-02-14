@@ -90,7 +90,6 @@ class StartFragment : Fragment() {
 
     private fun showErrorCondition() {
         Toast.makeText(context, R.string.exception, Toast.LENGTH_LONG).show()
-        binding.updateBut.visibility = View.VISIBLE
     }
 
 }
