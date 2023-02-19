@@ -76,7 +76,6 @@ class StartFragment : Fragment() {
                     binding.tvRubUsd.text = it.RUB
                     binding.tvRubEur.text = it.EUR
                 }
-
                 is CheckCondition -> showErrorCondition()
             }
         }
