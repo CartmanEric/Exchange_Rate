@@ -3,4 +3,5 @@ package com.example.exchangerate.domain.model
 sealed class ExchangeRateSealed
 
 
-object CheckCondition: ExchangeRateSealed()
+object ConditionError: ExchangeRateSealed()
+object ConditionSuccess: ExchangeRateSealed()

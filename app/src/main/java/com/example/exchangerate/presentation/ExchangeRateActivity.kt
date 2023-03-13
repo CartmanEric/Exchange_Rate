@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.exchangerate.R
 import com.example.exchangerate.databinding.ActivityMainBinding
-import com.example.exchangerate.presentation.screens.SplashFragment
+import com.example.exchangerate.presentation.screens.splash.SplashFragment
 
 class ExchangeRateActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding

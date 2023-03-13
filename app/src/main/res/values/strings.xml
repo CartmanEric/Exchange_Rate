@@ -7,4 +7,7 @@
     <string name="splash_url">Источник данных: www.exchangerate-api.com</string>
     <string name="exception">Проверьте соединение с интернетом</string>
     <string name="update">Обновить</string>
+    <string name="refrech">Обновить</string>
+    <string name="ofLine">Офлайн</string>
+    <string name="costs">Стоимость на:</string>
 </resources>

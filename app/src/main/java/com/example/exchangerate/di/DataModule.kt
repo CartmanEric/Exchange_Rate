@@ -1,7 +1,10 @@
 package com.example.exchangerate.di
 
-import com.example.exchangerate.data.api.ApiService
-import com.example.exchangerate.data.api.RetrofitInstance
+import android.app.Application
+import com.example.exchangerate.data.local.AppDataBase
+import com.example.exchangerate.data.local.Dao
+import com.example.exchangerate.data.remote.api.ApiService
+import com.example.exchangerate.data.remote.api.RetrofitInstance
 import dagger.Module
 import dagger.Provides
 
@@ -13,6 +16,12 @@ class DataModule {
     @ApplicationScope
     fun provideApi(): ApiService {
         return RetrofitInstance.api
+    }
+
+    @Provides
+    @ApplicationScope
+    fun provideDao(application: Application): Dao {
+        return AppDataBase.getInstance(application).dataBase()
     }
 
 }

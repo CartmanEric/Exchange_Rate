@@ -3,10 +3,10 @@ package com.example.exchangerate.domain
 import com.example.exchangerate.domain.model.Rates
 import javax.inject.Inject
 
-class GetExchangeRateUseCase @Inject constructor(
+class AddExchangeRateItemUseCase @Inject constructor(
     private val exchangeRateRepository: ExchangeRateRepository
-) {
-    suspend fun getExchangeRate(): Rates {
-        return exchangeRateRepository.getExchangeRate()
+){
+    suspend fun addItems(item: Rates){
+        exchangeRateRepository.addItems(item)
     }
 }

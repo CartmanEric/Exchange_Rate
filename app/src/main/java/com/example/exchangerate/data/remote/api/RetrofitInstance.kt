@@ -1,4 +1,4 @@
-package com.example.exchangerate.data.api
+package com.example.exchangerate.data.remote.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
