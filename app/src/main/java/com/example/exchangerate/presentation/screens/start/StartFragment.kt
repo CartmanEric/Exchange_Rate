@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.exchangerate.R
 import com.example.exchangerate.databinding.FragmentStartBinding
 import com.example.exchangerate.presentation.ExchangeRateApp
-import com.example.exchangerate.presentation.screens.splash.SplashViewModel
 import com.example.exchangerate.presentation.ViewModelFactory
+import com.example.exchangerate.presentation.screens.detailed.DetailedFragment
 import javax.inject.Inject
 
 
@@ -39,10 +40,15 @@ class StartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
-
         initViewModel()
         return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.openDetailFragBt.setOnClickListener {
+            openDetailFragment()
+        }
     }
 
 
@@ -62,8 +68,13 @@ class StartFragment : Fragment() {
                 tvRubUsd.text = it.last().RUB
                 tvRubEur.text = it.last().EUR
                 tvData.text = it.last().data
-                tvRubToEur.text = it.size.toString()
+//                tvRubToEur.text = it.size.toString()
             }
         }
+    }
+
+    private fun openDetailFragment() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frag_lay_out, DetailedFragment.newInstance()).commit()
     }
 }

@@ -1,6 +1,7 @@
 package com.example.exchangerate.di
 
 import androidx.lifecycle.ViewModel
+import com.example.exchangerate.presentation.screens.detailed.DetailedViewModel
 import com.example.exchangerate.presentation.screens.splash.SplashViewModel
 import com.example.exchangerate.presentation.screens.start.StartViewModel
 import dagger.Binds
@@ -21,6 +22,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(StartViewModel::class)
     fun bindStartViewModel(viewModel: StartViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailedViewModel::class)
+    fun bindDetailedViewModel(viewModel: DetailedViewModel): ViewModel
 
 
 }

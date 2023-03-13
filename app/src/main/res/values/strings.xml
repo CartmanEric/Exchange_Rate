@@ -10,4 +10,7 @@
     <string name="refrech">Обновить</string>
     <string name="ofLine">Офлайн</string>
     <string name="costs">Стоимость на:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Data">Дата:</string>
 </resources>
