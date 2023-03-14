@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class RatesDb(
     val EUR: String,
     val RUB: String,
+    val unixTime: Long,
     val data: String = "",
     @PrimaryKey(autoGenerate = true)
     val id: Int = UNDEFINED_ID

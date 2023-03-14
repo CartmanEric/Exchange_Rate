@@ -68,7 +68,6 @@ class StartFragment : Fragment() {
                 tvRubUsd.text = it.last().RUB
                 tvRubEur.text = it.last().EUR
                 tvData.text = it.last().data
-//                tvRubToEur.text = it.size.toString()
             }
         }
     }

@@ -10,7 +10,7 @@ class RemoteMapper @Inject constructor() {
     fun exchangeRateDbToRates(exchangeRate: ExchangeRateDb): Rates {
         val rub = reduceNumbers(exchangeRate.rates.RUB)
         val eur = countEur(exchangeRate.rates.RUB, exchangeRate.rates.EUR)
-        return Rates(eur, rub)
+        return Rates(eur, rub, exchangeRate.time_last_update_unix)
     }
 
     private fun reduceNumbers(number: Double): String {

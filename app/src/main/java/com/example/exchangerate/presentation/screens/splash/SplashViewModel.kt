@@ -34,9 +34,19 @@ class SplashViewModel @Inject constructor(
             withContext(Dispatchers.IO) {
                 val repoResultRub = getExchangeRateRemoteUseCase.getRemoteExchangeRate().RUB
                 val repoResultEur = getExchangeRateRemoteUseCase.getRemoteExchangeRate().EUR
+                val unixTime = getExchangeRateRemoteUseCase.getRemoteExchangeRate().unixTime
                 val result =
-                    Rates(EUR = repoResultEur, RUB = repoResultRub, data = getCurrentData())
-                getList.getItemsList().find { result.data == it.data } ?: addItem.addItems(result)
+                    Rates(
+                        EUR = repoResultEur,
+                        RUB = repoResultRub,
+                        unixTime = unixTime,
+                        data = getCurrentData()
+                    )
+                getList.getItemsList()
+                    .find {
+                        it.unixTime == unixTime ||
+                                it.data == result.data
+                    } ?: addItem.addItems(result)
                 _exchangeRate.postValue(ConditionSuccess)
             }
         } catch (e: Exception) {

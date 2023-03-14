@@ -9,12 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
-import com.example.exchangerate.R
 import com.example.exchangerate.databinding.FragmentDetailedBinding
 import com.example.exchangerate.presentation.ExchangeRateApp
 import com.example.exchangerate.presentation.ViewModelFactory
 import com.example.exchangerate.presentation.adapter.DetailedAdapter
-import com.example.exchangerate.presentation.screens.start.StartViewModel
 import javax.inject.Inject
 
 
@@ -51,8 +49,8 @@ class DetailedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        viewModel.getList.observe(viewLifecycleOwner){
-detailedAdapter.submitList(it)
+        viewModel.getList.observe(viewLifecycleOwner) {
+            detailedAdapter.submitList(it)
         }
     }
 
@@ -67,7 +65,7 @@ detailedAdapter.submitList(it)
     }
 
     private fun initAdapter() {
-        val manager = LinearLayoutManager(requireContext(),HORIZONTAL,false)
+        val manager = LinearLayoutManager(requireContext(), HORIZONTAL, false)
         with(binding.rv) {
             detailedAdapter = DetailedAdapter()
             layoutManager = manager
@@ -75,8 +73,5 @@ detailedAdapter.submitList(it)
         }
     }
 
-    private fun initViewModel(){
-
-    }
 
 }

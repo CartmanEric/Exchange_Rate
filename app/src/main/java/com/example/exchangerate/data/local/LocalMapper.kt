@@ -9,6 +9,7 @@ class LocalMapper @Inject constructor() {
 
         EUR = rates.EUR,
         RUB = rates.RUB,
+        unixTime = rates.unixTime,
         data = rates.data,
         id = rates.id
     )
@@ -17,6 +18,7 @@ class LocalMapper @Inject constructor() {
         Rates(
             EUR = ratesDb.EUR,
             RUB = ratesDb.RUB,
+            unixTime = ratesDb.unixTime,
             data = ratesDb.data,
             id = ratesDb.id
         )

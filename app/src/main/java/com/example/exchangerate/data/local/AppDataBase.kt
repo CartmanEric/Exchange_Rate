@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.exchangerate.data.local.model.RatesDb
 
 @Database(entities = [RatesDb::class], version = 1, exportSchema = false)
-abstract class AppDataBase: RoomDatabase() {
+abstract class AppDataBase : RoomDatabase() {
     abstract fun dataBase(): Dao
 
     companion object {
