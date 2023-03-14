@@ -9,7 +9,7 @@
     android:background="@color/gray"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".presentation.screens.StartFragment">
+    tools:context=".presentation.screens.start.StartFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -178,18 +178,41 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_eur_to_rub"
                 app:layout_constraintTop_toBottomOf="@+id/flag_rus_to_eur_img" />
 
-            <Button
-                android:id="@+id/update_but"
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange"
-                android:text="@string/update"
-                android:textAllCaps="false"
+                android:layout_marginEnd="16dp"
+                android:text="@string/costs"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_data"
+                app:layout_constraintEnd_toStartOf="@+id/tv_data"
+                app:layout_constraintTop_toTopOf="@+id/tv_data" />
+
+            <TextView
+                android:id="@+id/tv_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/open_detail_frag_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange"
+                android:text="График цен"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_data" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.appcompat.widget.LinearLayoutCompat>

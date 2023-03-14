@@ -1,10 +1,10 @@
 package com.example.exchangerate.presentation
 
 import android.app.Application
-import com.example.exchangerate.di.DaggerComponent
+import com.example.exchangerate.di.DaggerAppComponent
 
 class ExchangeRateApp : Application() {
     val component by lazy {
-        DaggerComponent.create()
+        DaggerAppComponent.factory().create(this)
     }
 }
